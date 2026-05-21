@@ -22,7 +22,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('add');
     }
 
     /**
@@ -30,7 +30,25 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $book = new Book();
+        $book->title = $request->title;
+        $book->author = $request->author;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+
+            $book->image = $fileName;
+        }
+
+        $book->description = $request->description;
+        $book->published_date = $request->published_date;
+        $book->save();
+
+        return redirect('/books')->with('create-msg', 'Book created successfully');
     }
 
     /**

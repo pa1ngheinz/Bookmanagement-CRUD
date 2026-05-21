@@ -16,6 +16,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                @if(session('create-msg'))
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm d-flex align-items-center justify-content-between" role="alert">
+                        {{ session('create-msg') }}
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <table

@@ -23,12 +23,18 @@
                     <a
                         href="{{ route('books.index') }}"
                         class="nav-link text-white"
-                        >All Books</a
+                        >Book Lists</a
                     >
                 </li>
 
-                <li class="nav-item">
-                    <a href="" class="nav-link text-white">Add Books</a>
+                <li
+                    class="nav-item {{ Request::is('books/create')? 'custom-active' : '' }}"
+                >
+                    <a
+                        href="{{ route('books.create') }}"
+                        class="nav-link text-white"
+                        >Add Books</a
+                    >
                 </li>
 
                 <li class="nav-item">
