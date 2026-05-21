@@ -1,8 +1,8 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+<nav class="main-header navbar navbar-expand-md bg-primary">
     <div class="container">
         <div class="navbar-brand">
-            <span class="brand-text font-weight-light">Book Management</span>
+            <span class="brand-text font-weight-bold">Book Management</span>
         </div>
 
         <div
@@ -10,23 +10,29 @@
             id="navbarCollapse"
         >
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
+            <ul class="navbar-nav d-flex gap-3">
+                <li
+                    class="nav-item {{ Request::is('/')? 'custom-active' : '' }}"
+                >
+                    <a href="/" class="nav-link text-white">Home</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('books.index') }}" class="nav-link"
+                <li
+                    class="nav-item {{ Request::is('books')? 'custom-active' : '' }}"
+                >
+                    <a
+                        href="{{ route('books.index') }}"
+                        class="nav-link text-white"
                         >All Books</a
                     >
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">Add Books</a>
+                    <a href="" class="nav-link text-white">Add Books</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">Edit Books</a>
+                    <a href="" class="nav-link text-white">Edit Books</a>
                 </li>
             </ul>
         </div>

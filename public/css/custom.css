@@ -1,0 +1,20 @@
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px !important;
+}
+
+.navbar-nav .nav-link {
+    transition: background-color 0.2s ease;
+}
+
+.nav-item.custom-active,
+.nav-item:hover {
+    background-color: white !important;
+    border-radius: 10px;
+}
+
+.nav-item.custom-active .nav-link,
+.nav-item:hover .nav-link {
+    color: black !important;
+}
