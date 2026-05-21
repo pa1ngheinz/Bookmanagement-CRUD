@@ -23,18 +23,24 @@
                             class="table table-bordered table-striped"
                         >
                             <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Description</th>
-                                    <th>Published Date</th>
-                                    <th>Action</th>
+                                <tr class="text-center">
+                                    <th class="align-middle">No</th>
+                                    <th class="align-middle">Title</th>
+                                    <th class="align-middle">Author</th>
+                                    <th class="align-middle">Description</th>
+                                    <th class="align-middle">Published Date</th>
+                                    <th class="align-middle">Action</th>
                                 </tr>
-                            </thead>
+                            </thead>    
 
                             <tbody>
+                                @php 
+                                $count = 1;
+                                @endphp
+
                                 @foreach($books as $book)
-                                <tr>
+                                <tr class="text-center">
+                                    <td>{{ $count++ }}</td>
                                     <td>{{ $book->title }}</td>
                                     <td>{{ $book->author }}</td>
                                     <td>{{ $book->description }}</td>
