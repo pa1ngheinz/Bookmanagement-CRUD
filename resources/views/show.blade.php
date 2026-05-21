@@ -23,6 +23,13 @@
                     </div>
                 @endif
 
+                @if(session('delete-msg'))
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm d-flex align-items-center justify-content-between" role="alert">
+                        {{ session('delete-msg') }}
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <table
@@ -55,7 +62,12 @@
                                     <td>
                                         <div class="d-flex justify-content-between">
                                             <a class="btn btn-default mr-2" href="">Edit</a>
-                                            <a class="btn btn-default" href="">Delete</a>
+                                            
+                                            <form action="{{ route('books.destroy', $book) }}" method="post">
+                                                @csrf
+                                                @method('Delete')
+                                                <input class="btn btn-default" type="submit" value="Delete">
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
