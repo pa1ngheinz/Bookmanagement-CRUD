@@ -18,6 +18,14 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-4">
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show shadow-sm d-flex align-items-center justify-content-between" role="alert">
+                        {{ $error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endforeach
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <form

@@ -30,25 +30,36 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $validated = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'description' => 'required',
+            'published_date' => 'required',
+        ]);
 
-        $book = new Book();
-        $book->title = $request->title;
-        $book->author = $request->author;
+        if($validated){
+            $book = new Book();
+            $book->title = $request->title;
+            $book->author = $request->author;
 
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $fileName);
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('images'), $fileName);
 
-            $book->image = $fileName;
+                $book->image = $fileName;
+            }
+
+            $book->description = $request->description;
+            $book->published_date = $request->published_date;
+            $book->save();
+
+            return redirect('/books')->with('create-msg', 'Book created successfully');
+        }else{
+            return back()->with('errors', 'Errors');
         }
 
-        $book->description = $request->description;
-        $book->published_date = $request->published_date;
-        $book->save();
-
-        return redirect('/books')->with('create-msg', 'Book created successfully');
+        
     }
 
     /**
