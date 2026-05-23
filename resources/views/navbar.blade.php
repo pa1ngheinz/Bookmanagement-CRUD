@@ -12,13 +12,13 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav flex-column flex-md-row gap-2 gap-md-3">
                 <li
-                    class="nav-item {{ Request::is('/')? 'custom-active' : '' }}"
+                    class="nav-item {{ Request::is('/') || request()->routeIs('books.show') ? 'custom-active' : '' }}"
                 >
                     <a href="/" class="nav-link text-white">Home</a>
                 </li>
 
                 <li
-                    class="nav-item {{ Request::is('books')? 'custom-active' : '' }}"
+                    class="nav-item {{ request()->routeIs('books.index')? 'custom-active' : '' }}"
                 >
                     <a
                         href="{{ route('books.index') }}"
@@ -28,7 +28,7 @@
                 </li>
 
                 <li
-                    class="nav-item {{ Request::is('books/create')? 'custom-active' : '' }}"
+                    class="nav-item {{ request()->routeIs('books.create')? 'custom-active' : '' }}"
                 >
                     <a
                         href="{{ route('books.create') }}"
