@@ -61,7 +61,7 @@
                                     <td>{{ $book->published_date }}</td>
                                     <td>
                                         <div class="d-flex justify-content-between">
-                                            <a class="btn btn-default mr-2" href="">Edit</a>
+                                            <a class="btn btn-default mr-2" href="{{ route('books.edit', $book) }}">Edit</a>
                                             
                                             <form action="{{ route('books.destroy', $book) }}" method="post">
                                                 @csrf

@@ -18,7 +18,7 @@
                 </li>
 
                 <li
-                    class="nav-item {{ request()->routeIs('books.index')? 'custom-active' : '' }}"
+                    class="nav-item {{ request()->routeIs('books.index') || request()->routeIs('books.edit') ? 'custom-active' : '' }}"
                 >
                     <a
                         href="{{ route('books.index') }}"

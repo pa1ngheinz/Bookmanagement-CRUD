@@ -7,7 +7,7 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 style="font-weight: 500; font-size: 25px" class="m-0">
-                    Add Book
+                    Edit Book
                 </h1>
             </div>
         </div>
@@ -26,14 +26,16 @@
                     </div>
                     @endforeach
                 @endif
+
                 <div class="card">
                     <div class="card-body">
                         <form
-                            action="{{ route('books.store') }}"
+                            action="{{ route('books.update', $book) }}"
                             method="post"
                             enctype="multipart/form-data"
                         >
                             @csrf
+                            @method('PUT')
                             <div class="mb-3">
                                 <label for="title" class="form-label"
                                     >Book title</label
@@ -42,7 +44,7 @@
                                     class="form-control"
                                     type="text"
                                     name="title"
-                                    id=""
+                                    value="{{ old('title', $book->title) }}"
                                 />
                             </div>
 
@@ -54,7 +56,7 @@
                                     class="form-control"
                                     type="text"
                                     name="author"
-                                    id=""
+                                    value="{{ old('author', $book->author) }}"
                                 />
                             </div>
 
@@ -74,7 +76,7 @@
                                     class="form-control"
                                     name="description"
                                     id=""
-                                ></textarea>
+                                >{{ old('description', $book->description) }}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -85,7 +87,7 @@
                                     type="date"
                                     class="form-control"
                                     name="published_date"
-                                    id=""
+                                    value="{{ old('published_date', $book->published_date) }}"
                                 />
                             </div>
 
@@ -93,8 +95,7 @@
                                 <input
                                     class="btn btn-default"
                                     type="submit"
-                                    name=""
-                                    value="Add"
+                                    value="Update"
                                 />
                             </div>
                         </form>

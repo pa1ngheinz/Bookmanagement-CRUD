@@ -17,7 +17,7 @@
 <div class="content">
     <div class="container">
         <div class="row">
-            @foreach($books as $book)
+            @forelse($books as $book)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
                 <div class="card h-100">
                     <div class="embed-responsive embed-responsive-4by3">
@@ -41,7 +41,13 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+                <div class="col-12 d-flex justify-content-center">
+                    <div>
+                        <p style="color: red !important;">You haven't added any books yet!!</p>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

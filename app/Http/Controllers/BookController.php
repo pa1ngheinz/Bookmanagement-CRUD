@@ -73,17 +73,48 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Book $book)
     {
-        //
+        return view('edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'description' => 'required',
+            'published_date' => 'required',
+        ]);
+
+        if($validated){
+            $book->title = $request->title;
+            $book->author = $request->author;
+            $book->description = $request->description;
+            
+            if($request->hasFile('image')){
+                $publicPhotoPath = public_path('images/'. $book->image);
+                if($book->image && $publicPhotoPath){
+                    unlink($publicPhotoPath);
+                }
+
+                $file = $request->file('image');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('images'), $fileName);
+
+                $book->image = $fileName;
+            }
+
+            $book->published_date = $request->published_date;
+            $book->save();
+
+            return redirect('books')->with('update-msg', 'Book updated successfully');
+        }else{
+            return back()->with('errors', 'Errors');
+        }
     }
 
     /**
