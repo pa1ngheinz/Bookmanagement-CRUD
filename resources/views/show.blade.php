@@ -15,7 +15,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-12 col-md-12col-lg-12">
                 @if(session('create-msg'))
                     <div class="alert alert-success alert-dismissible fade show shadow-sm d-flex align-items-center justify-content-between" role="alert">
                         {{ session('create-msg') }}

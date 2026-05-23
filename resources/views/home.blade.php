@@ -15,11 +15,34 @@
 </div>
 
 <div class="content">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-6"></div>
+            @foreach($books as $book)
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+                <div class="card h-100">
+                    <img src="{{ asset('images/'. $book->image) }}" class="card-img-top object-fit-cover" alt="" height="300px"/>
 
-            <div class="col-lg-6"></div>
+                    <div class="card-body">
+                        <h5 class="h-5 font-weight-bold">{{ $book->title }}</h5> <br>
+                        <p class="card-text">
+                            {{ $book->description }}
+                        </p>
+
+                        <hr>
+
+                        <p class="card-text">
+                            {{ $book->published_date }}
+                        </p>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-primary" href="">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

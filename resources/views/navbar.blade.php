@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md bg-primary">
+<nav class="main-header navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
         <div class="navbar-brand">
             <span class="brand-text font-weight-bold">Book Management</span>
@@ -10,7 +10,7 @@
             id="navbarCollapse"
         >
             <!-- Left navbar links -->
-            <ul class="navbar-nav d-flex gap-3">
+            <ul class="navbar-nav flex-column flex-md-row gap-2 gap-md-3">
                 <li
                     class="nav-item {{ Request::is('/')? 'custom-active' : '' }}"
                 >
@@ -23,7 +23,7 @@
                     <a
                         href="{{ route('books.index') }}"
                         class="nav-link text-white"
-                        >Book Lists</a
+                        >Books Table</a
                     >
                 </li>
 
@@ -36,15 +36,11 @@
                         >Add Books</a
                     >
                 </li>
-
-                <li class="nav-item">
-                    <a href="" class="nav-link text-white">Edit Books</a>
-                </li>
             </ul>
         </div>
 
         <!-- Right navbar links -->
-        <div class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        <div class="order-1 order-md-3 navbar-nav navbar-no-expand ml-5">
             <div class="profile">
                 <a href="">
                     <img
