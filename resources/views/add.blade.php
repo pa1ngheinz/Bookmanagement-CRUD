@@ -91,7 +91,7 @@
 
                             <div class="d-flex justify-content-end">
                                 <input
-                                    class="btn btn-default"
+                                    class="btn btn-primary"
                                     type="submit"
                                     name=""
                                     value="Add"

@@ -92,8 +92,10 @@
                             </div>
 
                             <div class="d-flex justify-content-end">
+                                <a class="btn btn-default mr-2" href="{{ route('books.index') }}">Back</a>
+
                                 <input
-                                    class="btn btn-default"
+                                    class="btn btn-primary"
                                     type="submit"
                                     value="Update"
                                 />
