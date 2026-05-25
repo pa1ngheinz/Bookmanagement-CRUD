@@ -44,7 +44,8 @@
             <div class="profile">
                 <a href="#" data-toggle="modal" data-target="#profile">
                     <img
-                        src="{{ asset('images/profile/default.png') }}"
+                    style="border-radius: 25px;"
+                        src="{{ asset('images/profile/'. Auth::user()->image)? asset('images/profile/'. Auth::user()->image)  : asset('images/profile/default.png') }}"
                         alt="Profile"
                         width="50"
                         height="50"
@@ -65,41 +66,79 @@
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <div class="modal-body">
-                <form action="" enctype="multipart/form-data">
+            <form
+                action="{{ route('users.update', Auth::user()) }}"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                @csrf @method('Put')
+
+                <div class="modal-body">
                     <div>
                         <img
-                            src="{{ asset('images/profile/default.png') }}"
+                            src="{{ Auth::user()->image ? asset('images/profile/' . Auth::user()->image) : asset('images/profile/default.png') }}"
                             alt=""
                             height="100px"
                             width="100px"
-                        /> <br> <br>
-                        <input type="file" name="profile-photo"> <br> <br>
+                            style="border-radius: 50px;"
+                        />
+                        <br />
+                        <br />
+                        <input type="file" name="image" /> <br />
+                        <br />
                     </div>
 
-                    <hr>
+                    <hr />
 
                     <div>
                         <label for="">Username</label>
-                        <input class="form-control" type="text" name="username" />
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="name"
+                            value="{{ old('name', Auth::user()->name) }}"
+                        />
                     </div>
 
                     <div>
                         <label for="">Email</label>
-                        <input class="form-control" type="text" name="email" />
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="email"
+                            value="{{ old('email', Auth::user()->email) }}"
+                        />
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        onclick="
+                            if (confirm('Are you sure?')) {
+                                document
+                                    .getElementById('my-logout-form')
+                                    .submit();
+                            }
+                        "
+                        class="btn btn-danger"
+                    >
+                        Logout
+                    </button>
 
-            <div class="modal-footer">
-                <button type="button" onclick="if(confirm('Are you sure?')) { document.getElementById('my-logout-form').submit(); }" class="btn btn-danger">Logout</button>
-
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
+                    <button type="submit" class="btn btn-primary">
+                        Update
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<form id="my-logout-form"  action="{{ route('logout') }}" method="post" style="display: none;">
+<form
+    id="my-logout-form"
+    action="{{ route('logout') }}"
+    method="post"
+    style="display: none"
+>
     @csrf
 </form>

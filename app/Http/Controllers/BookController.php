@@ -44,20 +44,16 @@ class BookController extends Controller
 
         if($validated){
             $book = new Book();
-            $book->title = $request->title;
-            $book->author = $request->author;
 
             if($request->hasFile('image')){
                 $file = $request->file('image');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images'), $fileName);
 
-                $book->image = $fileName;
+                $validated['image'] = $fileName;
             }
 
-            $book->description = $request->description;
-            $book->published_date = $request->published_date;
-            $book->save();
+            $book->save($validated);
 
             return redirect('/books')->with('create-msg', 'Book created successfully');
         }else{
@@ -95,14 +91,13 @@ class BookController extends Controller
             'published_date' => 'required',
         ]);
 
-        if($validated){
             $book->title = $request->title;
             $book->author = $request->author;
             $book->description = $request->description;
             
             if($request->hasFile('image')){
                 $publicPhotoPath = public_path('images/'. $book->image);
-                if($book->image && $publicPhotoPath){
+                if($book->image && file_exists($publicPhotoPath)){
                     unlink($publicPhotoPath);
                 }
 
@@ -117,9 +112,6 @@ class BookController extends Controller
             $book->save();
 
             return redirect('books')->with('update-msg', 'Book updated successfully');
-        }else{
-            return back()->with('errors', 'Errors');
-        }
     }
 
     /**
