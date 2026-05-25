@@ -92,10 +92,14 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="if(confirm('Are you sure?')) { document.getElementById('my-logout-form').submit(); }" class="btn btn-danger">Logout</button>
 
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>
 </div>
+
+<form id="my-logout-form"  action="{{ route('logout') }}" method="post" style="display: none;">
+    @csrf
+</form>

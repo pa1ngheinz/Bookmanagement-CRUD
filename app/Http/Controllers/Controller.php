@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
-abstract class Controller
+class Controller extends BaseController
 {
-    public function index() {
-        $books = Book::all();
-
-        return view('home', compact('books'));
-    }
+    use AuthorizesRequests, ValidatesRequests;
 }
