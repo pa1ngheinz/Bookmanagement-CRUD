@@ -38,22 +38,27 @@ class BookController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'author' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp',
             'description' => 'required',
             'published_date' => 'required',
         ]);
 
         if($validated){
             $book = new Book();
+            $book->title = $request->title;
+            $book->author = $request->author;
 
             if($request->hasFile('image')){
                 $file = $request->file('image');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images'), $fileName);
 
-                $validated['image'] = $fileName;
+                $book->image = $fileName;
             }
 
-            $book->save($validated);
+            $book->description = $request->description;
+            $book->published_date = $request->published_date;
+            $book->save();
 
             return redirect('/books')->with('create-msg', 'Book created successfully');
         }else{

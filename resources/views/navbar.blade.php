@@ -98,7 +98,7 @@
                             name="name"
                             value="{{ old('name', Auth::user()->name) }}"
                         />
-                    </div>
+                    </div> <br>
 
                     <div>
                         <label for="">Email</label>
@@ -107,6 +107,7 @@
                             type="text"
                             name="email"
                             value="{{ old('email', Auth::user()->email) }}"
+                            readonly
                         />
                     </div>
                 </div>

@@ -42,7 +42,7 @@
                                     class="form-control"
                                     type="text"
                                     name="title"
-                                    id=""
+                                    value="{{ old('title') }}"
                                 />
                             </div>
 
@@ -54,7 +54,7 @@
                                     class="form-control"
                                     type="text"
                                     name="author"
-                                    id=""
+                                    value="{{ old('author') }}"
                                 />
                             </div>
 
@@ -74,7 +74,7 @@
                                     class="form-control"
                                     name="description"
                                     id=""
-                                ></textarea>
+                                >{{ old('description') }}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -85,7 +85,7 @@
                                     type="date"
                                     class="form-control"
                                     name="published_date"
-                                    id=""
+                                    value="{{ old('published_date') }}"
                                 />
                             </div>
 

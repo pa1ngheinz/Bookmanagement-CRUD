@@ -60,13 +60,13 @@
                                     <td>{{ $book->description }}</td>
                                     <td>{{ $book->published_date }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-between">
+                                        <div class="d-flex justify-content-center">
                                             <a class="btn btn-default mr-2" href="{{ route('books.edit', $book) }}">Edit</a>
                                             
                                             <form action="{{ route('books.destroy', $book) }}" method="post">
                                                 @csrf
                                                 @method('Delete')
-                                                <input class="btn btn-default" type="submit" value="Delete">
+                                                <input class="btn btn-default" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
                                             </form>
                                         </div>
                                     </td>

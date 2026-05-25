@@ -16,6 +16,12 @@
 
 <div class="content">
     <div class="container">
+            @if(session('info'))
+                <div class="alert alert-success alert-dismissible fade show shadow-sm d-flex align-items-center justify-content-between" role="alert">
+                    {{ session('info') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
         <div class="row">
             @forelse($books as $book)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">

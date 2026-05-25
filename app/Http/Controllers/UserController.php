@@ -54,12 +54,10 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
         ]);
 
             $user->name = $request->name;
-            $user->email = $request->email;
 
             if($request->hasFile('image')){
                 $publicPhotoPath = public_path('images/profile/'. $user->image);
@@ -75,8 +73,8 @@ class UserController extends Controller
             }
 
             $user->save();
-            
-            return redirect('/')->with('photo-msg', 'Profile photo has been updated successfully.');
+
+            return redirect('/')->with('info', 'Profile info has been updated successfully.');
     }
 
     /**
